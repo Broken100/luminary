@@ -1,13 +1,10 @@
 import { Link } from 'react-router-dom';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 const AvisoLegal = () => (
   <div className="min-h-screen bg-white pt-32 pb-24">
     <div className="max-w-4xl mx-auto px-4 md:px-8">
-      <div className="mb-12">
-        <Link to="/" className="text-luminary-accent font-bold text-sm uppercase tracking-[0.2em] hover:underline">
-          ← Volver al inicio
-        </Link>
-      </div>
+      <Breadcrumbs items={[{ label: 'Aviso Legal' }]} />
       
       <h1 className="text-4xl md:text-5xl font-display font-bold text-luminary-dark mb-8">
         Aviso Legal

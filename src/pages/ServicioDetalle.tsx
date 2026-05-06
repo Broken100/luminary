@@ -1,10 +1,44 @@
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { servicios } from '../data/servicesData';
-import { ArrowRight, CheckCircle, Clock } from 'lucide-react';
+import { ArrowRight, CheckCircle, Clock, FileText, ShieldCheck, Headphones } from 'lucide-react';
+import Breadcrumbs from '../components/Breadcrumbs';
+
+const DETAIL_SECTIONS = [
+  { id: 'descripcion', label: 'Descripción' },
+  { id: 'beneficios', label: 'Beneficios' },
+  { id: 'requisitos', label: 'Requisitos' },
+  { id: 'testimonios', label: 'Testimonios' },
+  { id: 'contactar', label: 'Contactar' },
+] as const;
 
 const ServicioDetalle = () => {
   const { slug } = useParams<{ slug: string }>();
   const servicio = servicios.find(s => s.slug === slug);
+  const [activeDetailSection, setActiveDetailSection] = useState<string>('descripcion');
+
+  useEffect(() => {
+    if (!servicio) return;
+    const observers: IntersectionObserver[] = [];
+    DETAIL_SECTIONS.forEach(sec => {
+      const el = document.getElementById(sec.id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveDetailSection(sec.id);
+        },
+        { rootMargin: '-30% 0px -60% 0px' }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach(o => o.disconnect());
+  }, [servicio]);
+
+  const scrollToDetailSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   if (!servicio) {
     return (
@@ -25,14 +59,10 @@ const ServicioDetalle = () => {
   return (
     <div className="min-h-screen bg-white pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="mb-12">
-          <Link to="/servicios" className="text-luminary-accent font-bold text-sm uppercase tracking-[0.2em] hover:underline">
-            ← Todos los servicios
-          </Link>
-        </div>
+        <Breadcrumbs items={[{ label: 'Servicios', to: '/servicios' }, { label: servicio.titulo }]} />
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row gap-8 mb-16 items-start">
+        <div className="flex flex-col md:flex-row gap-8 mb-8 items-start">
           <div className="w-20 h-20 bg-luminary-bg flex items-center justify-center text-luminary-accent flex-shrink-0">
             <IconComponent className="w-10 h-10" />
           </div>
@@ -50,8 +80,28 @@ const ServicioDetalle = () => {
           </div>
         </div>
 
+        {/* Sticky Sub-navigation */}
+        <nav aria-label="Secciones del servicio" className="sticky top-[60px] z-30 bg-white border-b border-luminary-border -mx-4 md:-mx-8 px-4 md:px-8 mb-12">
+          <ul className="flex gap-6 overflow-x-auto py-3 text-[11px] font-bold uppercase tracking-[0.15em]">
+            {DETAIL_SECTIONS.map(sec => (
+              <li key={sec.id}>
+                <button
+                  onClick={() => scrollToDetailSection(sec.id)}
+                  className={`whitespace-nowrap pb-1 border-b-2 transition-colors ${
+                    activeDetailSection === sec.id
+                      ? 'text-luminary-accent border-luminary-accent'
+                      : 'text-slate-400 border-transparent hover:text-luminary-dark'
+                  }`}
+                >
+                  {sec.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
         {/* Descripción Extendida */}
-        <div className="grid lg:grid-cols-3 gap-12 mb-16">
+        <div id="descripcion" className="grid lg:grid-cols-3 gap-12 mb-16 scroll-mt-32">
           <div className="lg:col-span-2">
             <h2 className="text-2xl font-display font-bold text-luminary-dark mb-6">Descripción Detallada</h2>
             <div className="prose prose-lg max-w-none text-slate-600 leading-relaxed">
@@ -62,7 +112,7 @@ const ServicioDetalle = () => {
           {/* Sidebar */}
           <div className="space-y-8">
             {/* Beneficios */}
-            <div className="bg-luminary-bg p-8">
+            <div id="beneficios" className="bg-luminary-bg p-8 scroll-mt-32">
               <h3 className="font-display font-bold text-luminary-dark mb-4">Beneficios</h3>
               <ul className="space-y-3">
                 {servicio.beneficios.map((ben, idx) => (
@@ -75,7 +125,7 @@ const ServicioDetalle = () => {
             </div>
 
             {/* Requisitos */}
-            <div className="bg-white border border-luminary-border p-8">
+            <div id="requisitos" className="bg-white border border-luminary-border p-8 scroll-mt-32">
               <h3 className="font-display font-bold text-luminary-dark mb-4">Requisitos</h3>
               <ul className="space-y-3">
                 {servicio.requisitos.map((req, idx) => (
@@ -91,7 +141,7 @@ const ServicioDetalle = () => {
 
         {/* Testimonios */}
         {servicio.testimonios && servicio.testimonios.length > 0 && (
-          <div className="mb-16 bg-slate-50 py-16 px-8 -mx-8">
+          <div id="testimonios" className="mb-16 bg-slate-50 py-16 px-8 -mx-8 scroll-mt-32">
             <div className="max-w-7xl mx-auto">
               <h2 className="text-2xl font-display font-bold text-luminary-dark mb-8 text-center">
                 Casos de Éxito
@@ -125,7 +175,7 @@ const ServicioDetalle = () => {
             {otrosServicios.map((servicioRel, idx) => {
               const OtherIcon = servicioRel.icono;
               return (
-                <Link 
+                <Link
                   key={idx}
                   to={`/servicios/${servicioRel.slug}`}
                   className="group block p-6 bg-white border border-luminary-border hover:shadow-lg transition-all"
@@ -145,7 +195,7 @@ const ServicioDetalle = () => {
         </div>
 
         {/* CTA */}
-        <div className="mt-16 pt-12 border-t border-slate-200 text-center">
+        <div id="contactar" className="mt-16 pt-12 border-t border-slate-200 text-center scroll-mt-32">
           <h3 className="text-2xl font-display font-bold text-luminary-dark mb-4">
             ¿Listo para Comenzar?
           </h3>
@@ -153,13 +203,13 @@ const ServicioDetalle = () => {
             Contáctanos hoy mismo y dale a tu negocio el respaldo regulatorio que se merece.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href={`/?servicio=${slug}#contacto`}
-                className="px-10 py-5 bg-luminary-dark text-white font-bold text-xs uppercase tracking-[0.3em] hover:bg-slate-800 transition-all shadow-xl"
-              >
-               Contactar Ahora
-             </a>
-            <a 
+            <a
+              href={`/?servicio=${slug}#contacto`}
+              className="px-10 py-5 bg-luminary-dark text-white font-bold text-xs uppercase tracking-[0.3em] hover:bg-slate-800 transition-all shadow-xl"
+            >
+              Contactar Ahora
+            </a>
+            <a
               href="https://wa.me/593991102621"
               target="_blank"
               rel="noopener noreferrer"

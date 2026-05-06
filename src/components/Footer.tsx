@@ -15,10 +15,18 @@ const Footer = () => (
           Especialistas en arquitectura regulatoria. Optimizamos el camino técnico para tu éxito comercial en Ecuador.
         </p>
         <div className="flex gap-6">
-          <Facebook className="w-4 h-4 text-slate-500 hover:text-white cursor-pointer transition-colors" />
-          <Twitter className="w-4 h-4 text-slate-500 hover:text-white cursor-pointer transition-colors" />
-          <Linkedin className="w-4 h-4 text-slate-500 hover:text-white cursor-pointer transition-colors" />
-          <Instagram className="w-4 h-4 text-slate-500 hover:text-white cursor-pointer transition-colors" />
+          <a href="https://linkedin.com/company/luminary" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition-colors" aria-label="LinkedIn">
+            <Linkedin className="w-4 h-4" />
+          </a>
+          <a href="https://facebook.com/luminaryec" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition-colors" aria-label="Facebook">
+            <Facebook className="w-4 h-4" />
+          </a>
+          <a href="https://instagram.com/luminaryec" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition-colors" aria-label="Instagram">
+            <Instagram className="w-4 h-4" />
+          </a>
+          <a href="https://x.com/luminaryec" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition-colors" aria-label="X (Twitter)">
+            <Twitter className="w-4 h-4" />
+          </a>
         </div>
       </div>
 

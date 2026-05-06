@@ -36,14 +36,20 @@ const HeroSection = () => (
           Diseñamos soluciones dinámicas que combinan cumplimiento técnico puro con agilidad estratégica para empresas líderes en Ecuador.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
-          <button 
-            onClick={() => window.location.href = '#servicios'}
+          <button
+            onClick={() => {
+              const el = document.getElementById('servicios');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="px-6 sm:px-8 md:px-10 py-4 sm:py-5 bg-luminary-dark text-white font-bold text-xs uppercase tracking-widest hover:bg-slate-800 transition-all shadow-xl"
           >
             Nuestros Servicios
           </button>
-          <button 
-            onClick={() => window.location.href = '#nosotros'}
+          <button
+            onClick={() => {
+              const el = document.getElementById('nosotros');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="px-6 sm:px-8 md:px-10 py-4 sm:py-5 bg-white text-luminary-dark border border-luminary-border font-bold text-xs uppercase tracking-widest hover:bg-slate-50 transition-all"
           >
             Nuestra Historia

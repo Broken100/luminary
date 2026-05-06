@@ -1,15 +1,12 @@
 import { Link } from 'react-router-dom';
 import { servicios } from '../data/servicesData';
 import { ArrowRight } from 'lucide-react';
+import Breadcrumbs from '../components/Breadcrumbs';
 
 const ServiciosPage = () => (
   <div className="min-h-screen bg-white pt-32 pb-24">
     <div className="max-w-7xl mx-auto px-4 md:px-8">
-      <div className="mb-16">
-        <Link to="/" className="text-luminary-accent font-bold text-sm uppercase tracking-[0.2em] hover:underline">
-          ← Volver al inicio
-        </Link>
-      </div>
+      <Breadcrumbs items={[{ label: 'Servicios', to: '/servicios' }]} />
       
       <div className="text-center mb-16">
         <p className="text-luminary-accent font-bold uppercase tracking-widest text-xs mb-4">Servicios Especializados</p>
