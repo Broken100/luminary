@@ -1,9 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageCircle, X } from 'lucide-react';
 
 const WhatsAppFloat = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const hasAutoOpened = useRef(false);
+
+  useEffect(() => {
+    if (!hasAutoOpened.current) {
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+        hasAutoOpened.current = true;
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   const messages = [
     {
