@@ -153,10 +153,10 @@ const ServicioDetalle = () => {
             Contáctanos hoy mismo y dale a tu negocio el respaldo regulatorio que se merece.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="#contacto"
-              className="px-10 py-5 bg-luminary-dark text-white font-bold text-xs uppercase tracking-[0.3em] hover:bg-slate-800 transition-all shadow-xl"
-            >
+             <a
+               href="/#contacto"
+               className="px-10 py-5 bg-luminary-dark text-white font-bold text-xs uppercase tracking-[0.3em] hover:bg-slate-800 transition-all shadow-xl"
+             >
               Contactar Ahora
             </a>
             <a 

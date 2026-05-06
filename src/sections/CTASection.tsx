@@ -10,10 +10,10 @@ const CTASection = () => (
         Descubre cómo Luminary transforma la burocracia en una ventaja competitiva de alto rendimiento.
       </p>
       <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <button 
-            onClick={() => window.location.href = '#contacto'}
-            className="px-12 py-5 bg-luminary-accent text-white font-bold text-xs uppercase tracking-[0.3em] shadow-2xl shadow-luminary-accent/20 hover:bg-blue-700 transition-all"
-          >
+           <button
+             onClick={() => window.location.href = '/#contacto'}
+             className="px-12 py-5 bg-luminary-accent text-white font-bold text-xs uppercase tracking-[0.3em] shadow-2xl shadow-luminary-accent/20 hover:bg-blue-700 transition-all"
+           >
             Empezar Proyecto
           </button>
       </div>

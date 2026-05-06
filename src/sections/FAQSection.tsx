@@ -38,10 +38,10 @@ const FAQSection = () => (
             />
             <div className="absolute inset-0 bg-gradient-to-t from-luminary-dark/80 to-transparent flex flex-col justify-end p-8">
                <p className="text-white font-bold text-xl mb-2">¿Tienes más preguntas?</p>
-               <button 
-                 onClick={() => window.location.href = '#contacto'}
-                 className="text-luminary-accent font-bold text-sm flex items-center gap-2 group-hover:translate-x-2 transition-transform"
-               >
+                <button
+                  onClick={() => window.location.href = '/#contacto'}
+                  className="text-luminary-accent font-bold text-sm flex items-center gap-2 group-hover:translate-x-2 transition-transform"
+                >
                   Contáctanos hoy <ArrowRight className="w-4 h-4" />
                </button>
             </div>

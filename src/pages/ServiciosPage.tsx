@@ -23,7 +23,7 @@ const ServiciosPage = () => (
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {servicios.map((servicio, index) => {
+        {servicios.map((servicio, index) => {
           const IconComponent = servicio.icono;
           return (
             <Link 
@@ -58,14 +58,14 @@ const ServiciosPage = () => (
           Contáctanos hoy mismo para una asesoría gratuita y descubre cómo podemos ayudarte con tu proyecto regulatorio.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a 
-            href="#contacto"
-            className="px-10 py-5 bg-luminary-dark text-white font-bold text-xs uppercase tracking-[0.3em] hover:bg-slate-800 transition-all shadow-xl"
-          >
+          <a
+             href="/#contacto"
+             className="px-10 py-5 bg-luminary-dark text-white font-bold text-xs uppercase tracking-[0.3em] hover:bg-slate-800 transition-all shadow-xl"
+           >
             Contactar Ahora
           </a>
           <a 
-              href="https://wa.me/593991102621"
+            href="https://wa.me/593991102621"
             target="_blank"
             rel="noopener noreferrer"
             className="px-10 py-5 bg-green-500 text-white font-bold text-xs uppercase tracking-[0.3em] hover:bg-green-600 transition-all shadow-lg flex items-center justify-center gap-2"
