@@ -1,11 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, MessageCircle } from 'lucide-react';
 
+const getInitialMessage = (servicio: string | null) => {
+  if (servicio === 'registro-sanitario') {
+    return 'Hola, me interesa obtener información sobre el proceso de Registro Sanitario para mis productos. ¿Cuáles son los requisitos y tiempos estimados? Necesito asesoría para registrar mis productos ante ARCSA.';
+  }
+  return '';
+};
+
 const ContactSection = () => {
+  const [searchParams] = useSearchParams();
+  const servicioParam = searchParams.get('servicio');
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: getInitialMessage(servicioParam)
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
