@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronDown, Search } from 'lucide-react';
 import { servicios } from '../data/servicesData';
 
@@ -19,6 +19,7 @@ const Navbar = () => {
   const lastScrollY = useRef(0);
   const navRef = useRef<HTMLElement>(null);
   const location = useLocation();
+  const navigate = useNavigate();
   const isHome = location.pathname === '/';
 
   useEffect(() => {
@@ -93,9 +94,9 @@ const Navbar = () => {
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     } else {
-      window.location.href = `/#${id}`;
+      navigate('/', { state: { scrollTo: id } });
     }
-  }, [isHome, closeAll]);
+  }, [isHome, closeAll, navigate]);
 
   const handleServicesEnter = () => setServicesOpen(true);
   const handleServicesLeave = () => setServicesOpen(false);
@@ -183,16 +184,30 @@ const Navbar = () => {
             </AnimatePresence>
           </div>
 
-          <button
-            onClick={() => scrollToSection('contacto')}
-            className={`hover:text-luminary-dark transition-colors pb-1 ${
-              activeSection === 'contacto'
-                ? 'text-luminary-dark border-b-2 border-luminary-accent'
-                : 'text-slate-500 border-b-2 border-transparent'
-            }`}
-          >
-            Contacto
-          </button>
+          {isHome ? (
+            <button
+              onClick={() => scrollToSection('contacto')}
+              className={`hover:text-luminary-dark transition-colors pb-1 ${
+                activeSection === 'contacto'
+                  ? 'text-luminary-dark border-b-2 border-luminary-accent'
+                  : 'text-slate-500 border-b-2 border-transparent'
+              }`}
+            >
+              Contacto
+            </button>
+          ) : (
+            <Link
+              to="/contacto"
+              onClick={closeAll}
+              className={`hover:text-luminary-dark transition-colors pb-1 ${
+                location.pathname === '/contacto'
+                  ? 'text-luminary-dark border-b-2 border-luminary-accent'
+                  : 'text-slate-500 border-b-2 border-transparent hover:border-luminary-dark'
+              }`}
+            >
+              Contacto
+            </Link>
+          )}
 
           <button
             onClick={() => {
@@ -281,12 +296,22 @@ const Navbar = () => {
                 </AnimatePresence>
               </div>
 
-              <button
-                onClick={() => scrollToSection('contacto')}
-                className="text-left text-lg font-medium text-luminary-accent py-2"
-              >
-                Contacto
-              </button>
+              {isHome ? (
+                <button
+                  onClick={() => scrollToSection('contacto')}
+                  className="text-left text-lg font-medium text-luminary-accent py-2"
+                >
+                  Contacto
+                </button>
+              ) : (
+                <Link
+                  to="/contacto"
+                  onClick={closeAll}
+                  className="text-left text-lg font-medium text-luminary-accent py-2"
+                >
+                  Contacto
+                </Link>
+              )}
 
               <button
                 onClick={() => {

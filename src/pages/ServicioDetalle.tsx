@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { servicios } from '../data/servicesData';
 import { ArrowRight, CheckCircle, Clock, FileText, ShieldCheck, Headphones } from 'lucide-react';
 import Breadcrumbs from '../components/Breadcrumbs';
@@ -14,6 +14,7 @@ const DETAIL_SECTIONS = [
 
 const ServicioDetalle = () => {
   const { slug } = useParams<{ slug: string }>();
+  const navigate = useNavigate();
   const servicio = servicios.find(s => s.slug === slug);
   const [activeDetailSection, setActiveDetailSection] = useState<string>('descripcion');
 
@@ -202,13 +203,13 @@ const ServicioDetalle = () => {
           <p className="text-slate-500 mb-8 max-w-2xl mx-auto">
             Contáctanos hoy mismo y dale a tu negocio el respaldo regulatorio que se merece.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href={`/?servicio=${slug}#contacto`}
+<div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={() => navigate(`/contacto/${slug}`)}
               className="px-10 py-5 bg-luminary-dark text-white font-bold text-xs uppercase tracking-[0.3em] hover:bg-slate-800 transition-all shadow-xl"
             >
               Contactar Ahora
-            </a>
+            </button>
             <a
               href="https://wa.me/593991102621"
               target="_blank"

@@ -3,6 +3,7 @@ import Layout from './layouts/Layout';
 import Home from './pages/Home';
 import ServiciosPage from './pages/ServiciosPage';
 import ServicioDetalle from './pages/ServicioDetalle';
+import ContactoPage from './pages/ContactoPage';
 import AvisoLegal from './pages/legal/AvisoLegal';
 import Privacidad from './pages/legal/Privacidad';
 import Cookies from './pages/legal/Cookies';
@@ -17,6 +18,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/servicios" element={<ServiciosPage />} />
           <Route path="/servicios/:slug" element={<ServicioDetalle />} />
+          <Route path="/contacto" element={<ContactoPage />} />
+          <Route path="/contacto/:slug" element={<ContactoPage />} />
           <Route path="/legal/aviso-legal" element={<AvisoLegal />} />
           <Route path="/legal/privacidad" element={<Privacidad />} />
           <Route path="/legal/cookies" element={<Cookies />} />

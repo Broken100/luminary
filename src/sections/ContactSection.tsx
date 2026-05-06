@@ -1,22 +1,23 @@
-import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, MessageCircle } from 'lucide-react';
+import { useState } from 'react';
+import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, MessageCircle, Linkedin } from 'lucide-react';
+import { servicios } from '../data/servicesData';
 
-const getInitialMessage = (servicio: string | null) => {
-  if (servicio === 'registro-sanitario') {
-    return 'Hola, me interesa obtener información sobre el proceso de Registro Sanitario para mis productos. ¿Cuáles son los requisitos y tiempos estimados? Necesito asesoría para registrar mis productos ante ARCSA.';
-  }
-  return '';
+const getServiceMessage = (slug: string | undefined): string => {
+  if (!slug) return '';
+  const servicio = servicios.find(s => s.slug === slug);
+  if (!servicio) return '';
+  return `Hola, me interesa obtener información sobre ${servicio.titulo}. ¿Cuáles son los requisitos y tiempos estimados? Necesito asesoría para gestionar este trámite ante ARCSA.`;
 };
 
-const ContactSection = () => {
-  const [searchParams] = useSearchParams();
-  const servicioParam = searchParams.get('servicio');
-  
+interface ContactSectionProps {
+  servicioSlug?: string;
+}
+
+const ContactSection = ({ servicioSlug }: ContactSectionProps) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: getInitialMessage(servicioParam)
+    message: servicioSlug ? getServiceMessage(servicioSlug) : ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -42,7 +43,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contacto" className="py-24 bg-white">
+    <section id="contacto" className="py-24 bg-white scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid lg:grid-cols-2 gap-16">
           <div>
@@ -83,14 +84,17 @@ const ContactSection = () => {
             </div>
 
             <div className="mt-12 pt-12 border-t border-slate-100 flex justify-center sm:justify-start gap-6">
-              <a href="#" className="w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-luminary-dark hover:text-white transition-all">
+              <a href="https://linkedin.com/company/luminary" target="_blank" rel="noopener noreferrer" className="w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-luminary-dark hover:text-white transition-all" aria-label="LinkedIn">
+                <Linkedin className="w-6 h-6 sm:w-5 sm:h-5" />
+              </a>
+              <a href="https://facebook.com/luminaryec" target="_blank" rel="noopener noreferrer" className="w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-luminary-dark hover:text-white transition-all" aria-label="Facebook">
                 <Facebook className="w-6 h-6 sm:w-5 sm:h-5" />
               </a>
-              <a href="#" className="w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-luminary-dark hover:text-white transition-all">
-                <Twitter className="w-6 h-6 sm:w-5 sm:h-5" />
-              </a>
-              <a href="#" className="w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-luminary-dark hover:text-white transition-all">
+              <a href="https://instagram.com/luminaryec" target="_blank" rel="noopener noreferrer" className="w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-luminary-dark hover:text-white transition-all" aria-label="Instagram">
                 <Instagram className="w-6 h-6 sm:w-5 sm:h-5" />
+              </a>
+              <a href="https://x.com/luminaryec" target="_blank" rel="noopener noreferrer" className="w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-luminary-dark hover:text-white transition-all" aria-label="X (Twitter)">
+                <Twitter className="w-6 h-6 sm:w-5 sm:h-5" />
               </a>
             </div>
 

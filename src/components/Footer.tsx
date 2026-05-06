@@ -33,10 +33,10 @@ const Footer = () => (
           <div>
             <h4 className="font-display font-bold text-xs uppercase tracking-[0.3em] mb-10 text-slate-500">Navegación</h4>
             <ul className="space-y-4">
-              <li><a href="#inicio" className="text-slate-300 hover:text-luminary-accent transition-colors text-sm font-medium">Inicio</a></li>
-              <li><a href="#nosotros" className="text-slate-300 hover:text-luminary-accent transition-colors text-sm font-medium">Nosotros</a></li>
+              <li><Link to="/" className="text-slate-300 hover:text-luminary-accent transition-colors text-sm font-medium">Inicio</Link></li>
+              <li><Link to="/" className="text-slate-300 hover:text-luminary-accent transition-colors text-sm font-medium">Nosotros</Link></li>
               <li><Link to="/servicios" className="text-slate-300 hover:text-luminary-accent transition-colors text-sm font-medium">Servicios</Link></li>
-               <li><a href="/#contacto" className="text-slate-300 hover:text-luminary-accent transition-colors text-sm font-medium">Contacto</a></li>
+               <li><Link to="/contacto" className="text-slate-300 hover:text-luminary-accent transition-colors text-sm font-medium">Contacto</Link></li>
             </ul>
           </div>
 
