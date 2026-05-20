@@ -145,44 +145,17 @@ const Navbar = () => {
             </button>
           ))}
 
-          <div
-            className="relative"
-            onMouseEnter={handleServicesEnter}
-            onMouseLeave={handleServicesLeave}
+          <Link
+            to="/servicios"
+            onClick={closeAll}
+            className={`hover:text-luminary-dark transition-colors pb-1 ${
+              location.pathname.startsWith('/servicios')
+                ? 'text-luminary-dark border-b-2 border-luminary-accent'
+                : 'text-slate-500 border-b-2 border-transparent'
+            }`}
           >
-            <Link
-              to="/servicios"
-              onClick={closeAll}
-              className={`hover:text-luminary-dark transition-colors pb-1 flex items-center gap-1 ${
-                location.pathname.startsWith('/servicios')
-                  ? 'text-luminary-dark border-b-2 border-luminary-accent'
-                  : 'text-slate-500 border-b-2 border-transparent'
-              }`}
-            >
-              Servicios <ChevronDown className={`w-3 h-3 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
-            </Link>
-            <AnimatePresence>
-              {servicesOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="absolute top-full left-0 mt-2 w-64 bg-white shadow-2xl border border-luminary-border py-2 z-50"
-                >
-                  {servicios.map((serv, idx) => (
-                    <Link
-                      key={idx}
-                      to={`/servicios/${serv.slug}`}
-                      onClick={() => setServicesOpen(false)}
-                      className="block px-4 py-3 text-sm font-medium text-slate-600 hover:bg-luminary-bg hover:text-luminary-dark transition-colors"
-                    >
-                      {serv.titulo}
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+            Servicios
+          </Link>
 
           {isHome ? (
             <button
@@ -252,49 +225,13 @@ const Navbar = () => {
                 </button>
               ))}
 
-              <div>
-                <button
-                  onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                  className="w-full flex items-center justify-between text-left text-lg font-medium py-2 hover:text-luminary-accent transition-colors"
-                  aria-expanded={mobileServicesOpen}
-                  aria-controls="mobile-services-list"
-                >
-                  <span className="flex items-center gap-2">
-                    <Link
-                      to="/servicios"
-                      onClick={closeAll}
-                      className="text-luminary-dark"
-                    >
-                      Servicios
-                    </Link>
-                  </span>
-                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${mobileServicesOpen ? 'rotate-180' : ''}`} />
-                </button>
-                <AnimatePresence>
-                  {mobileServicesOpen && (
-                    <motion.div
-                      id="mobile-services-list"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="pl-4 space-y-1">
-                        {servicios.map((serv, idx) => (
-                          <Link
-                            key={idx}
-                            to={`/servicios/${serv.slug}`}
-                            onClick={closeAll}
-                            className="block text-base font-medium text-slate-600 hover:text-luminary-accent py-1 transition-colors"
-                          >
-                            {serv.titulo}
-                          </Link>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+              <Link
+                to="/servicios"
+                onClick={closeAll}
+                className="text-left text-lg font-medium py-2 hover:text-luminary-accent transition-colors"
+              >
+                Servicios
+              </Link>
 
               {isHome ? (
                 <button
