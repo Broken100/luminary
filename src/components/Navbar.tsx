@@ -146,7 +146,7 @@ const Navbar = () => {
           ))}
 
           <Link
-            to="/servicios"
+            to="/servicios/registro-sanitario"
             onClick={closeAll}
             className={`hover:text-luminary-dark transition-colors pb-1 ${
               location.pathname.startsWith('/servicios')
@@ -226,7 +226,7 @@ const Navbar = () => {
               ))}
 
               <Link
-                to="/servicios"
+                to="/servicios/registro-sanitario"
                 onClick={closeAll}
                 className="text-left text-lg font-medium py-2 hover:text-luminary-accent transition-colors"
               >

@@ -15,7 +15,7 @@ const ServicesSection = () => (
           </h2>
         </div>
         <Link 
-          to="/servicios"
+          to="/servicios/registro-sanitario"
           className="text-sm font-bold text-luminary-dark flex items-center gap-2 group"
         >
           Ver todos los servicios <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

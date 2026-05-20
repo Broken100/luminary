@@ -8,9 +8,8 @@ const ServiciosPage = () => {
   const { slug } = useParams<{ slug?: string }>();
   const activeService = servicios.find((s) => s.slug === slug);
 
-  // If the slug doesn't exist, redirect back to the root services path (which redirects to first slug)
   if (!activeService) {
-    return <Navigate to="/servicios" replace />;
+    return <Navigate to="/servicios/registro-sanitario" replace />;
   }
 
   return (
@@ -18,7 +17,7 @@ const ServiciosPage = () => {
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <Breadcrumbs 
           items={[
-            { label: 'Servicios', to: '/servicios' },
+            { label: 'Servicios', to: '/servicios/registro-sanitario' },
             { label: activeService.titulo }
           ]} 
         />
