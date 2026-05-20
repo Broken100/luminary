@@ -134,7 +134,7 @@ const Navbar = () => {
           </div>
         </Link>
 
-        <div className="hidden md:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em]">
+        <div className="hidden md:flex items-center gap-8 text-xs font-bold tracking-[0.1em]">
           {NAV_SECTIONS.map(sec => (
             <button
               key={sec.id}

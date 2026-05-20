@@ -6,12 +6,6 @@ import ServicioDetailPanel from '../components/ServicioDetailPanel';
 
 const ServiciosPage = () => {
   const { slug } = useParams<{ slug?: string }>();
-
-  // If no slug is specified in the URL, redirect to the first service
-  if (!slug) {
-    return <Navigate to={`/servicios/${servicios[0].slug}`} replace />;
-  }
-
   const activeService = servicios.find((s) => s.slug === slug);
 
   // If the slug doesn't exist, redirect back to the root services path (which redirects to first slug)
