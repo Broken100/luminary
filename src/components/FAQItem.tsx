@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FC } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, X } from 'lucide-react';
 
@@ -7,7 +7,7 @@ interface FAQItemProps {
   answer: string;
 }
 
-const FAQItem = ({ question, answer }: FAQItemProps) => {
+const FAQItem: FC<FAQItemProps> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="border-b border-slate-200">

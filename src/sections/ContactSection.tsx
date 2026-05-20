@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, MessageCircle, Linkedin } from 'lucide-react';
 import { servicios } from '../data/servicesData';
 
@@ -21,7 +21,7 @@ const ContactSection = ({ servicioSlug }: ContactSectionProps) => {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     
     const subject = encodeURIComponent('Consulta desde Luminary Landing Page');
@@ -35,7 +35,7 @@ const ContactSection = ({ servicioSlug }: ContactSectionProps) => {
     setIsSubmitted(true);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value

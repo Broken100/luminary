@@ -1,3 +1,4 @@
+import { ElementType } from 'react';
 import { 
   FileText, 
   ShieldCheck, 
@@ -15,7 +16,7 @@ export interface Servicio {
   beneficios: string[];
   tiempoEstimado: string;
   requisitos: string[];
-  icono: React.ElementType;
+  icono: ElementType;
   testimonios: Testimonio[];
 }
 

@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './layouts/Layout';
 import Home from './pages/Home';
 import ServiciosPage from './pages/ServiciosPage';
-import ServicioDetalle from './pages/ServicioDetalle';
 import ContactoPage from './pages/ContactoPage';
 import AvisoLegal from './pages/legal/AvisoLegal';
 import Privacidad from './pages/legal/Privacidad';
@@ -17,7 +16,7 @@ export default function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/servicios" element={<ServiciosPage />} />
-          <Route path="/servicios/:slug" element={<ServicioDetalle />} />
+          <Route path="/servicios/:slug" element={<ServiciosPage />} />
           <Route path="/contacto" element={<ContactoPage />} />
           <Route path="/contacto/:slug" element={<ContactoPage />} />
           <Route path="/legal/aviso-legal" element={<AvisoLegal />} />

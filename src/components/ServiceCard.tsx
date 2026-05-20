@@ -1,3 +1,4 @@
+import { FC, ElementType } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react'; 
@@ -5,12 +6,12 @@ import { ArrowRight } from 'lucide-react';
 interface ServiceCardProps {
   title: string;
   description: string;
-  icon: React.ElementType;
+  icon: ElementType;
   slug: string;
   delay?: number;
 }
 
-const ServiceCard = ({ title, description, icon: Icon, slug, delay = 0 }: ServiceCardProps) => (
+const ServiceCard: FC<ServiceCardProps> = ({ title, description, icon: Icon, slug, delay = 0 }) => (
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
